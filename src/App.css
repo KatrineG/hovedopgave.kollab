@@ -1,42 +1,48 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.bg-white {
+	background: #fff !important;
+}
+.bg-blue {
+	background: #0a2a43 !important;
+}
+.bg-orange {
+	background: #ff8a00 !important;
+}
+.bg-light {
+	background: #f7efe4 !important;
+}
+.bg-dark {
+	background: #141a36 !important;
+}
+.bg-transparent {
+	background: transparent !important;
+}
+.bg-white {
+	background: #ffffff00;
+}
+.bg-blue {
+	background: #a7d9ff;
+}
+.app-main {
+	position: relative;
+	z-index: 1; /* sørger for at indholdet ligger over evt. baggrundsvideo */
+	transition: background 0.5s cubic-bezier(.4,0,.2,1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.background-video-layer {
+	z-index: 0;
+	width: 100%;
+	overflow: hidden;
+	display:inline;
+	inset: 0;
+	pointer-events: none;
+  position: absolute;
+  margin-top: 100px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.background-video {
+	position: absolute;
+	inset: 0;
+	width: 1100px;
+	object-fit: cover;
+  margin: auto;
 }

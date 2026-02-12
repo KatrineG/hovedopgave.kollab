@@ -1,0 +1,38 @@
+.spotlight {
+  padding: 56px 12px;
+  /* background removed for global bg */
+}
+.spotlight-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+}
+.spotlight-media { display: block; }
+.spotlight-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.spotlight-body { padding: 8px 6px; }
+.spotlight-eyebrow { color: #8b6b4b; font-size: 12px; margin-bottom: 6px; }
+.spotlight-title { font-size: 26px; margin: 0 0 10px 0; }
+.spotlight-text { color: #333; line-height: 1.5; margin-bottom: 16px; }
+.spotlight-cta { color: #8b6b4b; font-weight: 600; text-decoration: none; }
+.spotlight-figure {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  width: 96px;
+  height: auto;
+  opacity: 0.9;
+}
+
+@media (max-width: 960px) {
+  .spotlight-inner { grid-template-columns: 1fr; }
+  .spotlight-figure { right: 12px; bottom: -8px; width: 80px; }
+}

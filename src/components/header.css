@@ -1,0 +1,128 @@
+/* Container (matcher din Figma frame bredde) */
+.k-container {
+  width: min(1512px, 100%);
+  margin: 0 auto;
+  padding: 0 100px; /* Figma-agtig luft i siderne */
+}
+
+/* Header wrapper */
+.k-header {
+  background: transparent;
+  color: #000;
+  position: relative;
+  z-index: 2; /* sørger for at headeren ligger over evt. baggrundsvideo */
+}
+
+/* MINI HEADER */
+.k-mini {
+  height: 44px; /* fra dit screenshot */
+  display: flex;
+  align-items: center;
+}
+
+.k-mini-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Language dropdown */
+.k-lang {
+  position: relative;
+}
+
+.k-lang-btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.k-chevron {
+  display: inline-block;
+  transform: rotate(90deg); /* gør › til “ned/åben”-agtig */
+  font-size: 22px;
+}
+
+/* Dropdown under DA */
+.k-lang-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 90px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 8px;
+  display: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Hover åbner dropdown (som du bad om) */
+.k-lang:hover .k-lang-menu {
+  display: block;
+}
+
+.k-lang-item {
+  display: block;
+  padding: 10px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+
+.k-lang-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* MAIN HEADER */
+.k-main {
+  height: 59px; /* fra dit screenshot */
+  display: flex;
+  align-items: center;
+}
+
+.k-main-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.k-logo {
+  text-decoration: none;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Nav */
+.k-nav {
+  display: flex;
+  align-items: center;
+  gap: 44px; /* luft mellem punkter */
+}
+
+.k-nav-link {
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 400; /* Montserrat regular */
+  color: #000;
+  text-decoration: none;
+}
+
+.k-nav-link:hover {
+  opacity: 0.7;
+}
