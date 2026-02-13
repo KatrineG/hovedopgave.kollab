@@ -45,4 +45,6 @@
 	width: 1100px;
 	object-fit: cover;
   margin: auto;
+
+  transform: translate(-60px, -25px); /* ← venstre + op */
 }

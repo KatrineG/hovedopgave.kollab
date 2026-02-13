@@ -2,7 +2,7 @@
 .k-container {
   width: min(1512px, 100%);
   margin: 0 auto;
-  padding: 0 150px; /* Figma-agtig luft i siderne */
+  padding: 0 150px;
 }
 
 /* Header wrapper */
@@ -13,14 +13,14 @@
   z-index: 1;
 }
 
-/* MINI HEADER (ikke sticky, men skal ligge øverst i lag) */
+/* ===================== MINI HEADER (ikke sticky) ===================== */
 .k-mini {
-  height: 30px; /* <-- mindre lodret (var 44px) */
+  height: 30px;                 /* mindre lodret */
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.98);
+  background: #fff;             /* helt hvid */
   position: relative;
-  z-index: 2000; /* ligger over sticky main */
+  z-index: 2000;                /* over sticky main */
 }
 
 .k-mini-inner {
@@ -38,7 +38,7 @@
   position: relative;
   display: inline-block;
   z-index: 3000;
-  margin-top: 0; /* <-- vigtig: fjern den store 25px */
+  margin-top: 0;
 }
 
 /* Fjern default summary marker */
@@ -53,7 +53,7 @@
 .k-lang-btn {
   font-family: "Montserrat", sans-serif;
   font-size: 10px;
-  line-height: 18px; /* <-- lidt mindre */
+  line-height: 18px;
   font-weight: 400;
 
   background: #fff;
@@ -62,7 +62,7 @@
   border: 1px solid var(--lang-border);
   border-radius: 0;
 
-  padding: 1px 5px 1px 8px; /* <-- lidt mindre */
+  padding: 1px 5px 1px 8px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +79,6 @@
   height: 10px;
   display: block;
   transition: transform 0.2s ease;
-  color: #000;
 }
 
 /* Åben state: roter pilen */
@@ -92,7 +91,7 @@
   border-bottom-color: transparent;
 }
 
-/* Dropdown (pixel-clean, hænger sammen med knappen) */
+/* Dropdown */
 .k-lang-menu {
   position: absolute;
   left: 0;
@@ -102,7 +101,7 @@
   background: #fff;
 
   border: 1px solid var(--lang-border);
-  margin-top: -1px; /* smelter border sammen med knappen */
+  margin-top: -1px;
 
   padding: 0;
   z-index: 4000;
@@ -111,7 +110,7 @@
 /* Items */
 .k-lang-item {
   display: block;
-  padding: 2px 10px; /* <-- lidt mere luft i siderne */
+  padding: 2px 10px;
   line-height: 18px;
 
   text-decoration: none;
@@ -131,18 +130,27 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* ===== MAIN HEADER (STICKY) ===== */
+/* ===================== MAIN HEADER (sticky + lang fade) ===================== */
 .k-main {
-  height: 40px;
+  height: 48px;
   display: flex;
   align-items: center;
 
   position: sticky;
   top: 0;
-  z-index: 1500; /* <-- over content men under mini-header */
+  z-index: 1500;
 
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
+  /* solid top -> transparent bund */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0.95) 35%,
+    rgba(255,255,255,0.70) 70%,
+    rgba(255,255,255,0) 100%
+  );
+
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .k-main-inner {
@@ -158,7 +166,6 @@
   text-decoration: none;
 }
 
-/* SVG logo */
 .k-logo img {
   height: 14px;
   width: auto;
@@ -175,8 +182,8 @@
 /* NAV LINKS */
 .k-nav-link {
   font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 17px;
+  line-height: 22px;
   font-weight: 400;
   color: #000;
   text-decoration: none;
