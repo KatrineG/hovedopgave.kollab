@@ -3,7 +3,7 @@
    ========================= */
 
 .services-accordion{
-  margin-top: 90px; /* ✅ gør hele accordion-sektionen længere nede */
+  margin-top: 90px;
 }
 
 /* =========================
@@ -14,10 +14,9 @@
   width: 100%;
 }
 
-/* Services label */
 .accordion-header-title{
   font-family: "Montserrat", sans-serif;
-  font-size: 12px; /* ✅ */
+  font-size: 12px; /* Services = 12px */
   color: #666;
   margin: 0 0 18px 0;
 }
@@ -64,8 +63,8 @@ button.arrow-svg{
   background: transparent;
   padding: 0;
 
-  width: 16px;
-  height: 16px;
+  width: 32px;
+  height: 32px;
 
   display: inline-flex;
   align-items: center;
@@ -88,7 +87,7 @@ button.arrow-svg{
 }
 
 /* =========================
-   Panel
+   Panel animation
    ========================= */
 
 .accordion-panel{
@@ -100,10 +99,13 @@ button.arrow-svg{
   padding: 0 0 26px 0;
 }
 
-/* Layout */
+/* =========================
+   Expanded layout
+   ========================= */
+
 .panel-grid{
   display: grid;
-  grid-template-columns: 240px 1fr; /* ✅ smaller images */
+  grid-template-columns: 240px 1fr; /* smaller images */
   gap: 40px;
   align-items: start;
   margin-top: 14px;
@@ -158,7 +160,7 @@ button.arrow-svg{
   left: 0;
   bottom: -3px;
   width: 100%;
-  height: 1.5px;
+  height: 1px;
   background: currentColor;
 
   transform: scaleX(0);
@@ -177,13 +179,20 @@ button.arrow-svg{
 }
 
 /* =========================
-   Bullets (2 kolonner tættere på hinanden)
+   Bullets (tættere kolonner)
    ========================= */
 
+/* NOTE:
+   1fr/1fr gør kolonnerne meget brede → derfor "føles" de langt fra hinanden.
+   max-content gør kolonnerne kun så brede som indholdet, og så virker column-gap rigtigt.
+*/
 .panel-bullets{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px; /* ✅ mindre afstand mellem de to bulletkolonner */
+  grid-template-columns: max-content max-content; /* ✅ key fix */
+  column-gap: 28px;                               /* ✅ justér her (16-40px) */
+  row-gap: 10px;
+  justify-content: start;
+  margin-top: 10px;
 }
 
 .panel-bullets ul{
@@ -196,7 +205,7 @@ button.arrow-svg{
   font-family: "Montserrat", sans-serif;
   position: relative;
   padding-left: 16px;
-  margin: 10px 0;
+  margin: 6px 0;
 
   font-size: 12px;
   line-height: 1.6;
@@ -212,8 +221,18 @@ button.arrow-svg{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ff8a00;
+  background: #FB823B;
   transform: translateY(-50%);
+}
+
+/* =========================
+   "Idiotsikker" override (fjern hvis alt virker)
+   ========================= */
+
+.panel-content .panel-bullets{
+  grid-template-columns: max-content max-content !important;
+  column-gap: 28px !important;
+  justify-content: start !important;
 }
 
 /* =========================
@@ -236,6 +255,12 @@ button.arrow-svg{
 
   .panel-bullets{
     grid-template-columns: 1fr;
-    gap: 12px;
+    column-gap: 0;
+    row-gap: 12px;
+  }
+
+  .panel-content .panel-bullets{
+    grid-template-columns: 1fr !important;
+    column-gap: 0 !important;
   }
 }
