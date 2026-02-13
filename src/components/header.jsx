@@ -1,5 +1,7 @@
 import "./header.css";
 import { Link } from "react-router-dom";
+import KollabLogo from "../assets/kollab.logo.svg";
+import ButtonArrow from "../assets/button.arrow.svg";
 
 export default function Header() {
   return (
@@ -7,30 +9,34 @@ export default function Header() {
       {/* MINI HEADER */}
       <div className="k-mini">
         <div className="k-container k-mini-inner">
-          <div className="k-lang">
-            <button className="k-lang-btn" type="button">
-              DA <span className="k-chevron">›</span>
-            </button>
+          <details className="k-lang">
+            <summary className="k-lang-btn">
+              <span className="k-lang-label">DA</span>
+              <img
+                className="k-lang-arrow"
+                src={ButtonArrow}
+                alt=""
+                aria-hidden="true"
+              />
+            </summary>
 
-            {/* Dropdown */}
             <div className="k-lang-menu">
-              <a className="k-lang-item" href="#">
-                EN
-              </a>
               <a className="k-lang-item" href="#">
                 DE
               </a>
+              <a className="k-lang-item" href="#">
+                EN
+              </a>
             </div>
-          </div>
+          </details>
         </div>
       </div>
 
       {/* MAIN HEADER */}
-      <div className="k-main">
+      <div className="k-main k-main-sticky">
         <div className="k-container k-main-inner">
-          {/* Logo (placeholder tekst – kan skiftes til billede senere) */}
           <Link className="k-logo" to="/">
-            KOLLAB
+            <img src={KollabLogo} alt="Kollab logo" />
           </Link>
 
           <nav className="k-nav">

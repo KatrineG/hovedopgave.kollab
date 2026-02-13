@@ -28,7 +28,7 @@ const slides = [
     title: "Scandlines",
     subtitle:
       "Komplekse projekter løst med fokus på drift og brugerrejse.",
-    img: "src/assets/scandilines.png",
+    img: "src/assets/scandlines.jpg",
   },
   {
     id: 5,

@@ -2,7 +2,7 @@
 .k-container {
   width: min(1512px, 100%);
   margin: 0 auto;
-  padding: 0 100px; /* Figma-agtig luft i siderne */
+  padding: 0 150px; /* Figma-agtig luft i siderne */
 }
 
 /* Header wrapper */
@@ -10,14 +10,17 @@
   background: transparent;
   color: #000;
   position: relative;
-  z-index: 2; /* sørger for at headeren ligger over evt. baggrundsvideo */
+  z-index: 1;
 }
 
-/* MINI HEADER */
+/* MINI HEADER (ikke sticky, men skal ligge øverst i lag) */
 .k-mini {
-  height: 44px; /* fra dit screenshot */
+  height: 30px; /* <-- mindre lodret (var 44px) */
   display: flex;
   align-items: center;
+  background: rgba(255, 255, 255, 0.98);
+  position: relative;
+  z-index: 2000; /* ligger over sticky main */
 }
 
 .k-mini-inner {
@@ -26,69 +29,120 @@
   align-items: center;
 }
 
-/* Language dropdown */
+/* ===== Language dropdown ===== */
+:root {
+  --lang-border: rgba(135, 135, 135, 0.25);
+}
+
 .k-lang {
   position: relative;
+  display: inline-block;
+  z-index: 3000;
+  margin-top: 0; /* <-- vigtig: fjern den store 25px */
 }
 
+/* Fjern default summary marker */
+.k-lang summary {
+  list-style: none;
+}
+.k-lang summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Lukket look */
 .k-lang-btn {
   font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  line-height: 27px;
-  font-weight: 600;
-  border: 0;
-  background: transparent;
+  font-size: 10px;
+  line-height: 18px; /* <-- lidt mindre */
+  font-weight: 400;
+
+  background: #fff;
   cursor: pointer;
-  padding: 6px 8px;
+
+  border: 1px solid var(--lang-border);
+  border-radius: 0;
+
+  padding: 1px 5px 1px 8px; /* <-- lidt mindre */
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.k-chevron {
+.k-lang-label {
   display: inline-block;
-  transform: rotate(90deg); /* gør › til “ned/åben”-agtig */
-  font-size: 22px;
 }
 
-/* Dropdown under DA */
+/* Din SVG-pil */
+.k-lang-arrow {
+  width: 10px;
+  height: 10px;
+  display: block;
+  transition: transform 0.2s ease;
+  color: #000;
+}
+
+/* Åben state: roter pilen */
+.k-lang[open] .k-lang-arrow {
+  transform: rotate(90deg);
+}
+
+/* Når åben: undgå “hop” i 1px */
+.k-lang[open] .k-lang-btn {
+  border-bottom-color: transparent;
+}
+
+/* Dropdown (pixel-clean, hænger sammen med knappen) */
 .k-lang-menu {
   position: absolute;
-  right: 0;
-  top: calc(100% + 6px);
-  min-width: 90px;
+  left: 0;
+  top: 100%;
+  min-width: 100%;
+
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  padding: 8px;
-  display: none;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+
+  border: 1px solid var(--lang-border);
+  margin-top: -1px; /* smelter border sammen med knappen */
+
+  padding: 0;
+  z-index: 4000;
 }
 
-/* Hover åbner dropdown (som du bad om) */
-.k-lang:hover .k-lang-menu {
-  display: block;
-}
-
+/* Items */
 .k-lang-item {
   display: block;
-  padding: 10px 10px;
-  border-radius: 8px;
+  padding: 2px 10px; /* <-- lidt mere luft i siderne */
+  line-height: 18px;
+
   text-decoration: none;
   color: #000;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 10px;
+
+  border-top: 1px solid var(--lang-border);
+}
+
+/* Første item skal ikke have top-linje */
+.k-lang-item:first-child {
+  border-top: none;
 }
 
 .k-lang-item:hover {
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* MAIN HEADER */
+/* ===== MAIN HEADER (STICKY) ===== */
 .k-main {
-  height: 59px; /* fra dit screenshot */
+  height: 40px;
   display: flex;
   align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1500; /* <-- over content men under mini-header */
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
 }
 
 .k-main-inner {
@@ -99,30 +153,50 @@
 
 /* Logo */
 .k-logo {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  color: #000;
-  font-family: "Montserrat", sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
 }
 
-/* Nav */
+/* SVG logo */
+.k-logo img {
+  height: 14px;
+  width: auto;
+  display: block;
+}
+
+/* NAV */
 .k-nav {
   display: flex;
   align-items: center;
-  gap: 44px; /* luft mellem punkter */
+  gap: 44px;
 }
 
+/* NAV LINKS */
 .k-nav-link {
   font-family: "Montserrat", sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 27px;
-  font-weight: 400; /* Montserrat regular */
+  font-weight: 400;
   color: #000;
   text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
 }
 
-.k-nav-link:hover {
-  opacity: 0.7;
+/* Underline */
+.k-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: #000;
+  width: 0;
+  transition: width 0.25s ease;
+}
+
+/* Hover */
+.k-nav-link:hover::after {
+  width: 100%;
 }
