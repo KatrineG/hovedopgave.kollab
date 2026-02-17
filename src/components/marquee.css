@@ -21,9 +21,9 @@
    Marquee base
    ========================= */
 
-.marquee{
-  --marquee-bg: #ffffff; /* skift hvis din sidebg ikke er hvid */
 
+
+.marquee{
   overflow: hidden;
   padding: 25px 12px;
   position: relative;
@@ -41,15 +41,6 @@
   z-index: 5;
 }
 
-.marquee::before{
-  left:0;
-  background: linear-gradient(to right, var(--marquee-bg), transparent);
-}
-
-.marquee::after{
-  right:0;
-  background: linear-gradient(to left, var(--marquee-bg), transparent);
-}
 
 /* =========================
    Track

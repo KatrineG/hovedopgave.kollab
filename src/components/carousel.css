@@ -156,7 +156,6 @@
 
 .carousel-bleed-area{
   --align-left: 0px;
-  --carousel-bg: #ffffff; /* skift hvis din sidebg ikke er hvid */
 
   width: 100%;
   margin-top: 26px;
@@ -175,15 +174,6 @@
   z-index: 5;
 }
 
-.carousel-bleed-area::before{
-  left:0;
-  background: linear-gradient(to right, var(--carousel-bg), rgba(255,255,255,0));
-}
-
-.carousel-bleed-area::after{
-  right:0;
-  background: linear-gradient(to left, var(--carousel-bg), rgba(255,255,255,0));
-}
 
 /* -------------------------
    Track (modern feel)

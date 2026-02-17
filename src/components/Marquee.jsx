@@ -31,7 +31,7 @@ export default function Marquee() {
       </h2>
 
 
-      <div className="marquee">
+      <div className="marquee fade">
 
         <div className="marquee-track">
 

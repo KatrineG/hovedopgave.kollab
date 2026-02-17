@@ -4,8 +4,7 @@ import Carousel from "../components/Carousel.jsx";
 import Marquee from "../components/Marquee.jsx";
 import Values from "../components/Values.jsx";
 import Spotlight from "../components/Spotlight.jsx";
-import Footer from "../components/Footer.jsx";
-import { useRef, useEffect, useState } from "react";
+import ScrollingColor from "../components/ScrollingColor.jsx";
 
 export default function Home() {
 
@@ -14,11 +13,21 @@ export default function Home() {
     <>
       <Hero />
       <main className={`app-main`}>
-        <Accordion />
-        <Carousel />
-        <Marquee />
-        <Values />
-        <Spotlight />
+        <ScrollingColor color="#fff">
+          <Accordion />
+        </ScrollingColor>
+        <ScrollingColor color="#fff">
+          <Carousel />
+        </ScrollingColor>
+        <ScrollingColor color="#FB823B">
+          <Marquee />
+        </ScrollingColor>
+        <ScrollingColor color="#ffdd00">
+          <Values />
+        </ScrollingColor>
+        <ScrollingColor color="#cc00ff">
+          <Spotlight />
+        </ScrollingColor>
       </main>
     </>
   );

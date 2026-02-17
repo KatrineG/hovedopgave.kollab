@@ -132,6 +132,8 @@
 
 /* ===================== MAIN HEADER (sticky + lang fade) ===================== */
 .k-main {
+  
+
   height: 48px;
   display: flex;
   align-items: center;
@@ -140,18 +142,15 @@
   top: 0;
   z-index: 1500;
 
-  /* solid top -> transparent bund */
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0.95) 35%,
-    rgba(255,255,255,0.70) 70%,
-    rgba(255,255,255,0) 100%
-  );
 
   backdrop-filter: none;
   box-shadow: none;
 }
+
+  .scrolled {
+    background-color: rgba(255,255,255); /* Example color, adjust as needed */
+    transition: background-color 0.5s;
+  }
 
 .k-main-inner {
   display: flex;
@@ -177,6 +176,7 @@
   display: flex;
   align-items: center;
   gap: 44px;
+  margin-left: 350px;
 }
 
 /* NAV LINKS */

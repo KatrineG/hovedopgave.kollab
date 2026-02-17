@@ -2,8 +2,8 @@ import Serviceoverview from "../components/Serviceoverview.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
 import Marquee from "../components/Marquee.jsx";
 import VidenSection from "../components/VidenSection.jsx";
-import Footer from "../components/Footer.jsx";   // ✅ tilføj denne
 import Spacer from "../components/spacer.jsx";
+import ScrollingColor from "../components/ScrollingColor.jsx";
 
 
 export default function Services() {
@@ -13,15 +13,21 @@ export default function Services() {
     <>
       <main>
 
-        <Serviceoverview />
+        <ScrollingColor color="#fff">
+            <Serviceoverview />
+        </ScrollingColor>
 
-        <AwardsSection />
-
+        <ScrollingColor color="#fff">
+            <AwardsSection />
+        </ScrollingColor>
         <Spacer height="50px" />
 
-        <Marquee />
-
-        <VidenSection />
+        <ScrollingColor color="#fff">  
+            <Marquee />
+        </ScrollingColor>
+        <ScrollingColor color="linear-gradient(0deg, #BCA4EA, #CCB4FA)">
+            <VidenSection />
+        </ScrollingColor>
 
       </main>
 

@@ -2,6 +2,7 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import KollabLogo from "../assets/kollab.logo.svg";
 import ButtonArrow from "../assets/button.arrow.svg";
+import Search from "./Search";
 
 export default function Header() {
   return (
@@ -31,6 +32,10 @@ export default function Header() {
               Om os
             </Link>
           </nav>
+
+          <div style={{ width: '150px' }}>
+            <Search />
+          </div>
         </div>
       </header>
   );
