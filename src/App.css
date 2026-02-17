@@ -1,50 +1,111 @@
+/* =========================================================
+   BACKGROUND UTILITIES
+   ========================================================= */
+
 .bg-white {
-	background: #fff !important;
+  background: #fff !important;
 }
+
 .bg-blue {
-	background: #0a2a43 !important;
+  background: #0a2a43 !important;
 }
+
 .bg-orange {
-	background: #ff8a00 !important;
+  background: #ff8a00 !important;
 }
+
 .bg-light {
-	background: #f7efe4 !important;
+  background: #f7efe4 !important;
 }
+
 .bg-dark {
-	background: #141a36 !important;
+  background: #141a36 !important;
 }
+
 .bg-transparent {
-	background: transparent !important;
+  background: transparent !important;
 }
-.bg-white {
-	background: #ffffff00;
-}
-.bg-blue {
-	background: #a7d9ff;
-}
+
+
+/* =========================================================
+   MAIN APP LAYER
+   sørger for at content altid ligger over video
+   ========================================================= */
+
 .app-main {
-	position: relative;
-	z-index: 1; /* sørger for at indholdet ligger over evt. baggrundsvideo */
-	transition: background 0.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  z-index: 1;
+  transition: background 0.5s cubic-bezier(.4,0,.2,1);
 }
+
+
+/* =========================================================
+   BACKGROUND VIDEO LAYER
+   stabil, påvirker ikke layout
+   ========================================================= */
 
 .background-video-layer {
-	z-index: 0;
-	width: 100%;
-	overflow: hidden;
-	display:inline;
-	inset: 0;
-	pointer-events: none;
-  position: absolute;
-  margin-top: 100px;
+
+  inset: 0;
+
+  z-index: -1;         /* bag alt */
+
+  pointer-events: none;
+  overflow: hidden;
+
 }
 
-.background-video {
-	position: absolute;
-	inset: 0;
-	width: 1100px;
-	object-fit: cover;
-  margin: auto;
 
-  transform: translate(-60px, -25px); /* ← venstre + op */
+/* =========================================================
+   BACKGROUND VIDEO
+   ========================================================= */
+
+.background-video {
+
+  position: absolute;
+
+  top: 395px;
+  left: 40%;
+
+  width: 1100px;        /* matcher dit design */
+  height: auto;
+
+  transform:
+    translate(-60px, -25px)
+    translate(-50%, -50%);
+
+  object-fit: cover;
+
+}
+
+
+/* =========================================================
+   OPTIONAL: hvis du vil have fuldskærm version
+   (kan bruges senere)
+   ========================================================= */
+
+/*
+.background-video {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: none;
+
+}
+*/
+
+
+/* =========================================================
+   SAFETY: sørger for body ikke laver scroll bugs
+   ========================================================= */
+
+html,
+body {
+
+  margin: 0;
+  padding: 0;
+
 }

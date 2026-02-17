@@ -1,69 +1,69 @@
-/* Genbrug din container fra header.css:
-.k-container { width: min(1512px, 100%); ... }
-*/
-
-/* Digital-varianten af main header */
-.k-main-digital{
-  height: 48px; /* samme højde som du har */
+/* Digital header wrapper */
+.k-digitalHeader{
+  height: 48px;              /* matcher din main header */
+  display: flex;
+  align-items: center;
+  background: #fff;
+  top:0;
+  position: sticky;
+  z-index: 1500;
 }
 
-/* Layout: venstre breadcrumb + højre subnav */
-.k-main-inner-digital{
+/* indre layout */
+.k-digitalInner{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Breadcrumb venstre */
-.k-breadcrumb{
+/* venstre brand */
+.k-digitalBrand{
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   color: #000;
   white-space: nowrap;
 }
 
-.k-breadcrumb-logo{
+/* logo størrelse = samme som din normale header (14px) */
+.k-digitalLogo{
   height: 14px;
   width: auto;
   display: block;
 }
 
-.k-breadcrumb-sep{
-
-  font-size: 22px;     /* ← gør den større (højere og visuelt tykkere) */
-
-  font-weight: 400;
-
-  opacity: 0.7;
-
+/* divider (det er HER du styrer tykkelse + højde) */
+.k-digitalDivider{
+  display: inline-block;
+  width: 2px;               /* ✅ tykkelse */
+  height: 22px;             /* ✅ højere end tekst/logo */
+  background: rgba(0,0,0,0.75);
   transform: translateY(-1px);
-
 }
 
-.k-breadcrumb-label{
-
+/* Digital label */
+.k-digitalLabel{
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.01em;
 
-  transform: translateY(4px); 
-
+  /* ✅ få "Digital" lidt længere ned end logo */
+  transform: translateY(2px);
 }
 
-/* Subnav højre */
-.k-subnav{
+/* højre subnav */
+.k-digitalNav{
   display: flex;
   align-items: center;
-  gap: 44px;
+  gap: 44px;                /* ✅ derfor bliver det ikke “OplevelseLøsninger…” */
 }
 
-/* Subnav links (samme underline-style som dine nav-links) */
-.k-subnav-link{
+/* links */
+.k-digitalNavLink{
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 17px;          /* matcher dine nav-links */
   line-height: 22px;
   font-weight: 400;
 
@@ -72,10 +72,11 @@
 
   position: relative;
   padding-bottom: 2px;
+  white-space: nowrap;
 }
 
 /* underline */
-.k-subnav-link::after{
+.k-digitalNavLink::after{
   content:"";
   position:absolute;
   left:0;
@@ -86,19 +87,13 @@
   transition: width 0.25s ease;
 }
 
-/* hover */
-.k-subnav-link:hover::after{
+.k-digitalNavLink:hover::after{
   width:100%;
 }
 
-/* active state (NavLink giver .active automatisk) */
-.k-subnav-link.active::after{
-  width:100%;
-}
-
-/* Responsiv: gør gap mindre */
+/* responsive */
 @media (max-width: 1100px){
-  .k-subnav{
+  .k-digitalNav{
     gap: 24px;
   }
 }

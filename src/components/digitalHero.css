@@ -1,0 +1,177 @@
+/* =========================
+   DIGITAL HERO (samme stil som hero)
+   ========================= */
+
+.digital-hero{
+  padding: 32px 0 0 0;
+  z-index: 2;
+  position: relative;
+  background: #fff; /* vi ignorerer baggrund/gradient nu */
+}
+
+/* matcher din hero-inner spacing */
+.digital-hero-inner{
+  width: min(1512px, 100%);
+  margin: 40px auto 0 auto;
+  padding: 0 150px;
+
+  display: grid;
+  grid-template-columns: 0.95fr 1.35fr;
+  gap: 56px;
+
+  align-items: start;
+}
+
+.digital-hero-left{
+  align-self: center;
+}
+
+/* TITEL (samme som hero-title) */
+.digital-hero-title{
+  margin: 0 0 14px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  line-height: 1.20;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #111;
+}
+
+.digital-hero-dash{
+  color: #FB823B;
+}
+
+/* BRØDTEKST */
+.digital-hero-text{
+  margin: 0;
+  max-width: 70ch;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* =========================
+   MARQUEE
+   ========================= */
+
+.digital-marquee{
+  margin-top: 34px;
+  overflow: hidden;
+  position: relative;
+
+  /* lidt bundluft som i dit screenshot */
+  padding: 12px 0 34px;
+}
+
+/* fade i siderne (så loop ikke føles hårdt) */
+.digital-marquee::before,
+.digital-marquee::after{
+  content:"";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.digital-marquee::before{
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.digital-marquee::after{
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.digital-marquee-track{
+  display: flex;
+  gap: 22px;
+  width: max-content;
+
+  /* loop */
+  animation: digitalMarquee 28s linear infinite;
+  will-change: transform;
+}
+
+/* Stop animation hvis reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .digital-marquee-track{
+    animation: none;
+  }
+}
+
+@keyframes digitalMarquee{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); } /* fordi vi duplikerer listen */
+}
+
+/* hver item */
+.digital-marquee-item{
+  flex: 0 0 auto;
+  display: block;
+}
+
+/* billederne */
+.digital-marquee-img{
+  display: block;
+  height: 138px;   /* ⬅️ styrer “hero-striben” højden */
+  width: auto;
+  object-fit: cover;
+}
+
+/* små forskelle i størrelser (matcher screenshot vibe) */
+.digital-marquee-item-1 .digital-marquee-img{ height: 132px; }
+.digital-marquee-item-2 .digital-marquee-img{ height: 118px; }
+.digital-marquee-item-3 .digital-marquee-img{ height: 145px; }
+.digital-marquee-item-4 .digital-marquee-img{ height: 154px; }
+.digital-marquee-item-5 .digital-marquee-img{ height: 126px; }
+.digital-marquee-item-6 .digital-marquee-img{ height: 142px; }
+.digital-marquee-item-7 .digital-marquee-img{ height: 122px; }
+.digital-marquee-item-8 .digital-marquee-img{ height: 150px; }
+.digital-marquee-item-9 .digital-marquee-img{ height: 134px; }
+.digital-marquee-item-10 .digital-marquee-img{ height: 120px; }
+.digital-marquee-item-11 .digital-marquee-img{ height: 140px; }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px){
+  .digital-hero-inner{
+    padding: 0 60px;
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .digital-hero-title{
+    font-size: 34px;
+  }
+
+  .digital-marquee{
+    margin-top: 22px;
+  }
+
+  .digital-marquee-img{
+    height: 120px;
+  }
+
+  .digital-marquee::before,
+  .digital-marquee::after{
+    width: 90px;
+  }
+}
+
+@media (max-width: 600px){
+  .digital-marquee-img{
+    height: 105px;
+  }
+
+  .digital-marquee::before,
+  .digital-marquee::after{
+    width: 60px;
+  }
+}

@@ -2,7 +2,6 @@
 
 .services {
   padding: 40px 0 120px 0;
-  background: #ffffff;
   position: relative;
   z-index: 2;
 }
@@ -133,7 +132,7 @@
   right: 20px;
 
   /* ✅ FLYT TITLERNE LÆNGERE NED (ens på alle kort) */
-  bottom: 8px;      /* var 20px -> lavere ned */
+  bottom: -40px;      /* var 20px -> lavere ned */
   min-height: 64px; /* låser baseline så alle flugter pænt */
 
   z-index: 2;
@@ -146,7 +145,7 @@
 }
 
 .service-card:hover .service-overlay {
-  transform: translateY(-18px); /* samme som du havde */
+  transform: translateY(-60px); /* samme som du havde */
 }
 
 
@@ -182,6 +181,7 @@
 .service-card:hover .service-arrow {
   opacity: 1;
   transform: translateX(0);
+
 }
 
 
@@ -193,6 +193,7 @@
   font-size: 12px;
   line-height: 1.5;
   font-weight: 400;
+  min-height:54px;
 
   max-width: 28ch;
 
