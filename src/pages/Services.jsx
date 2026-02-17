@@ -1,8 +1,31 @@
+import Serviceoverview from "../components/Serviceoverview.jsx";
+import AwardsSection from "../components/AwardsSection.jsx";
+import Marquee from "../components/Marquee.jsx";
+import VidenSection from "../components/VidenSection.jsx";
+import Footer from "../components/Footer.jsx";   // ✅ tilføj denne
+
+
 export default function Services() {
+
   return (
-    <div style={{ padding: 32 }}>
-      <h1>Services</h1>
-      <p>Her kommer indholdet for Services-siden.</p>
-    </div>
+
+    <>
+      <main>
+
+        <Serviceoverview />
+
+        <AwardsSection />
+
+        <Marquee />
+
+        <VidenSection />
+
+      </main>
+
+      <Footer />   {/* ✅ footer nederst */}
+
+    </>
+
   );
+
 }

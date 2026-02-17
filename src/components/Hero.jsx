@@ -1,7 +1,7 @@
 import React from "react";
 import "./hero.css";
 import heroVideo from "../assets/KOLLAB-herovideo.mp4";
-import ButtonArrow from "../assets/button.arrow.svg";
+import ButtonArrow from "../assets/arrow.orange.svg";
 
 export default function Hero() {
   return (

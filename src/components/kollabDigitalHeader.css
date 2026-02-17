@@ -1,0 +1,104 @@
+/* Genbrug din container fra header.css:
+.k-container { width: min(1512px, 100%); ... }
+*/
+
+/* Digital-varianten af main header */
+.k-main-digital{
+  height: 48px; /* samme højde som du har */
+}
+
+/* Layout: venstre breadcrumb + højre subnav */
+.k-main-inner-digital{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Breadcrumb venstre */
+.k-breadcrumb{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+}
+
+.k-breadcrumb-logo{
+  height: 14px;
+  width: auto;
+  display: block;
+}
+
+.k-breadcrumb-sep{
+
+  font-size: 22px;     /* ← gør den større (højere og visuelt tykkere) */
+
+  font-weight: 400;
+
+  opacity: 0.7;
+
+  transform: translateY(-1px);
+
+}
+
+.k-breadcrumb-label{
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+
+  transform: translateY(4px); 
+
+}
+
+/* Subnav højre */
+.k-subnav{
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+
+/* Subnav links (samme underline-style som dine nav-links) */
+.k-subnav-link{
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+
+  color: #000;
+  text-decoration: none;
+
+  position: relative;
+  padding-bottom: 2px;
+}
+
+/* underline */
+.k-subnav-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:1.5px;
+  width:0;
+  background:#000;
+  transition: width 0.25s ease;
+}
+
+/* hover */
+.k-subnav-link:hover::after{
+  width:100%;
+}
+
+/* active state (NavLink giver .active automatisk) */
+.k-subnav-link.active::after{
+  width:100%;
+}
+
+/* Responsiv: gør gap mindre */
+@media (max-width: 1100px){
+  .k-subnav{
+    gap: 24px;
+  }
+}

@@ -1,0 +1,160 @@
+/* =========================
+   SECTION
+   ========================= */
+
+.awards {
+  background: #35296B;
+  position: relative;
+
+  /* klip kun i højre side, men lad dots stikke ud nedad */
+  overflow-x: clip;
+  overflow-y: visible;
+
+  z-index: 2;
+  margin-top: -50px; 
+}
+
+
+/* =========================
+   INNER
+   ========================= */
+
+.awards-inner {
+  width: min(1512px, 100%);
+  margin: 0 auto;
+
+  /* højden på lilla baggrund */
+  padding: 100px 150px;
+
+  position: relative;
+}
+
+
+/* =========================
+   TEXT
+   ========================= */
+
+.awards-content {
+  max-width: 560px;
+}
+
+.awards-title {
+  margin: 0 0 12px 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+}
+
+.awards-text {
+  margin: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  max-width: 62ch;
+}
+
+
+/* =========================
+   DOT GRID
+   ========================= */
+
+.dots {
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 50px;
+
+  /*
+     Base placering + scroll-linked bevægelse
+     --dots-x styres af din JSX scroll code
+  */
+
+  transform:
+    translate(10%, 30%)
+    translate3d(var(--dots-x, 180px), 0, 0);
+
+  will-change: transform;
+
+  pointer-events: none;
+  z-index: 5;
+
+}
+
+
+/* =========================
+   DOT
+   ========================= */
+
+.dot {
+
+  width: 80px;
+  height: 80px;
+
+  display: block;
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+
+  .dots{
+    transform: translate(10%, 30%);
+  }
+
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px){
+
+  .awards-inner{
+    padding: 60px 60px;
+  }
+
+  .dots{
+
+    grid-template-columns: repeat(3, 60px);
+    gap: 35px;
+
+    transform:
+      translate(10%, 30%)
+      translate3d(var(--dots-x, 140px), 0, 0);
+
+  }
+
+  .dot{
+    width: 60px;
+    height: 60px;
+  }
+
+}
+
+
+@media (max-width: 600px){
+
+  .dots{
+    display: none;
+  }
+
+}

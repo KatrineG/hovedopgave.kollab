@@ -1,10 +1,11 @@
 /* =========================
-   Section spacing (længere nede)
+   Section spacing
    ========================= */
 
 .services-accordion{
-  margin-top: 90px;
+  margin-top: 75px;
 }
+
 
 /* =========================
    Accordion base
@@ -16,22 +17,26 @@
 
 .accordion-header-title{
   font-family: "Montserrat", sans-serif;
-  font-size: 12px; /* Services = 12px */
+  font-size: 12px;
   color: #666;
   margin: 0 0 18px 0;
 }
 
+
 /* Divider lines */
+
 .accordion-list{
   border-top: 1px solid rgba(0,0,0,0.15);
 }
 
 .accordion-item{
   border-bottom: 1px solid rgba(0,0,0,0.15);
+  position: relative;
 }
 
+
 /* =========================
-   Header row (Digital osv.)
+   Header row
    ========================= */
 
 .accordion-btn{
@@ -45,94 +50,225 @@
 .label-row{
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   white-space: nowrap;
 }
 
+
+/* =========================
+   Header text underline
+   ========================= */
+
 .item-label{
+
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 1.2;
   color: #111;
+
+  position: relative;
+  display: inline-block;
+
 }
 
-/* Arrow button (header) */
+.item-label::after{
+
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 100%;
+  height: 1.5px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+
+}
+
+.accordion-btn:hover .item-label::after{
+  transform: scaleX(1);
+}
+
+.accordion-item.open .item-label::after{
+  transform: scaleX(1);
+}
+
+
+/* =========================
+   Arrow button
+   ========================= */
+
 button.arrow-svg{
+
   border: none;
   background: transparent;
   padding: 0;
 
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
-  flex-shrink: 0;
+
 }
 
-/* Arrow image from assets */
 .arrow-icon{
-  width: 16px;
-  height: 16px;
+
+  width: 14px;
+  height: 14px;
   display: block;
+
   transition: transform 220ms ease;
+
 }
 
 .arrow-icon.is-open{
+
   transform: rotate(90deg);
+
 }
+
 
 /* =========================
    Panel animation
    ========================= */
 
 .accordion-panel{
+
+  position: relative;
   overflow: hidden;
   transition: max-height 320ms ease;
+
 }
 
-.panel-inner{
-  padding: 0 0 26px 0;
+
+/* =========================
+   FADE BACKGROUND (PREMIUM)
+   ========================= */
+
+.accordion-panel::before{
+
+  content:"";
+  position: absolute;
+  inset: 0;
+
+  background:
+
+    /* Vertical fade */
+    linear-gradient(
+      to top,
+
+      rgba(var(--fade-rgb), 0.35) 0%,
+      rgba(var(--fade-rgb), 0.18) 30%,
+      rgba(var(--fade-rgb), 0.07) 48%,
+
+      rgba(var(--fade-rgb), 0.00) 68%
+    ),
+
+    /* Side soft fade */
+    radial-gradient(
+      ellipse at center,
+
+      rgba(var(--fade-rgb), 0.14) 0%,
+      rgba(var(--fade-rgb), 0.06) 45%,
+      rgba(var(--fade-rgb), 0.00) 80%
+
+    );
+
+  filter: blur(8px);
+
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+
+    opacity 550ms ease,
+    transform 750ms cubic-bezier(.22,.61,.36,1);
+
+  pointer-events: none;
+
+  z-index: 0;
+
 }
+
+
+/* Fade visible when open */
+
+.accordion-item.open .accordion-panel::before{
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+/* Content above fade */
+
+.panel-inner{
+
+  position: relative;
+  z-index: 1;
+
+  padding: 0 0 26px 0;
+
+}
+
 
 /* =========================
    Expanded layout
    ========================= */
 
 .panel-grid{
+
   display: grid;
-  grid-template-columns: 240px 1fr; /* smaller images */
+  grid-template-columns: 240px 1fr;
   gap: 40px;
   align-items: start;
   margin-top: 14px;
+
 }
 
 .panel-media img{
+
   width: 100%;
   max-width: 240px;
-  height: auto;
   display: block;
+
 }
 
-/* Panel intro text */
+
+/* =========================
+   Intro text
+   ========================= */
+
 .panel-intro{
+
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
   line-height: 1.6;
   margin: 0 0 14px 0;
   color: #111;
   max-width: 72ch;
+
 }
 
+
 /* =========================
-   CTA (matches hero-link + underline text only)
+   CTA
    ========================= */
 
 .panel-cta{
+
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -142,66 +278,88 @@ button.arrow-svg{
 
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.02em;
 
   margin: 0 0 16px 0;
+
 }
 
 .panel-cta-text{
+
   position: relative;
   display: inline-block;
   line-height: 1;
+
 }
 
 .panel-cta-text::after{
+
   content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
+
   width: 100%;
-  height: 1px;
+  height: 1.5px;
+
   background: currentColor;
 
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 180ms ease;
+
 }
 
 .panel-cta:hover .panel-cta-text::after{
   transform: scaleX(1);
 }
 
+
+/* CTA arrow */
+
 .cta-arrow-icon{
-  width: 16px;
-  height: 16px;
+
+  width: 14px;
+  height: 14px;
   display: block;
+
+  transition: transform 180ms ease;
+
 }
 
+.panel-cta:hover .cta-arrow-icon{
+
+  transform: translateX(4px);
+
+}
+
+
 /* =========================
-   Bullets (tættere kolonner)
+   Bullet points
    ========================= */
 
-/* NOTE:
-   1fr/1fr gør kolonnerne meget brede → derfor "føles" de langt fra hinanden.
-   max-content gør kolonnerne kun så brede som indholdet, og så virker column-gap rigtigt.
-*/
 .panel-bullets{
+
   display: grid;
-  grid-template-columns: max-content max-content; /* ✅ key fix */
-  column-gap: 28px;                               /* ✅ justér her (16-40px) */
+  grid-template-columns: max-content max-content;
+  column-gap: 28px;
   row-gap: 10px;
   justify-content: start;
   margin-top: 10px;
+
 }
 
 .panel-bullets ul{
+
   list-style: none;
   padding: 0;
   margin: 0;
+
 }
 
 .panel-bullets li{
+
   font-family: "Montserrat", sans-serif;
   position: relative;
   padding-left: 16px;
@@ -210,9 +368,11 @@ button.arrow-svg{
   font-size: 12px;
   line-height: 1.6;
   color: #111;
+
 }
 
 .panel-bullets li::before{
+
   content: "";
   position: absolute;
   left: 0;
@@ -221,25 +381,20 @@ button.arrow-svg{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #FB823B;
+
+  background: var(--accent-color);
+
   transform: translateY(-50%);
+
 }
 
-/* =========================
-   "Idiotsikker" override (fjern hvis alt virker)
-   ========================= */
-
-.panel-content .panel-bullets{
-  grid-template-columns: max-content max-content !important;
-  column-gap: 28px !important;
-  justify-content: start !important;
-}
 
 /* =========================
    Responsive
    ========================= */
 
 @media (max-width: 1100px){
+
   .services-accordion{
     margin-top: 60px;
   }
@@ -255,12 +410,6 @@ button.arrow-svg{
 
   .panel-bullets{
     grid-template-columns: 1fr;
-    column-gap: 0;
-    row-gap: 12px;
   }
 
-  .panel-content .panel-bullets{
-    grid-template-columns: 1fr !important;
-    column-gap: 0 !important;
-  }
 }

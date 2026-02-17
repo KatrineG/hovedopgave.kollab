@@ -11,18 +11,46 @@ const logos = [
 ];
 
 export default function Marquee() {
-  // Duplicate the logos array so the CSS animation can loop seamlessly
+
   const items = [...logos, ...logos];
 
   return (
-    <div className="marquee" aria-label="Client logos marquee">
-      <div className="marquee-track">
-        {items.map((l, i) => (
-          <div className="marquee-item" key={i}>
-            <img src={l.img} alt={l.alt} />
-          </div>
-        ))}
+
+    <section className="marquee-section" aria-label="Client logos marquee">
+
+      {/* 👇 NY – Samarbejder */}
+      <div className="marquee-eyebrow">
+        Samarbejder
       </div>
-    </div>
+
+
+      <h2 className="marquee-title">
+
+        VI HAR GJORT DET 1.000 GANGE FØR, OG VI GØR DET GERNE IGEN
+
+      </h2>
+
+
+      <div className="marquee">
+
+        <div className="marquee-track">
+
+          {items.map((l, i) => (
+
+            <div className="marquee-item" key={`${l.id}-${i}`}>
+
+              <img src={l.img} alt={l.alt} loading="lazy" />
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </section>
+
   );
+
 }

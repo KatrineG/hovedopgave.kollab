@@ -7,7 +7,7 @@
 /* matcher headerens spacing */
 .hero-inner {
   width: min(1512px, 100%);
-  margin: 40px auto 0 auto; /* ← top right bottom left */
+  margin: 40px auto 0 auto; /* top right bottom left */
   padding: 0 150px;
 
   display: grid;
@@ -17,9 +17,8 @@
   align-items: start;
 }
 
-
 .hero-left {
-    align-self: center;
+  align-self: center;
 }
 
 /* TITEL */
@@ -34,7 +33,6 @@
 
 .hero-dash {
   color: #FB823B;
-  
 }
 
 /* BRØDTEKST */
@@ -51,7 +49,7 @@
 /* LINKS / KNAPPER */
 .hero-actions {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   align-items: center;
 }
 
@@ -65,7 +63,7 @@
 
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;              /* ✅ ændret fra 16px */
   letter-spacing: 0.02em;
 }
 
@@ -93,8 +91,8 @@
 
 /* PIL */
 .hero-link-arrow {
-  width: 14px;
-  height: 14px;
+  width: 14px;                  /* ✅ ændret fra 12px */
+  height: 14px;                 /* ✅ ændret fra 12px */
   display: block;
 
   position: relative;

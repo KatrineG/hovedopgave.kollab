@@ -6,8 +6,20 @@ import businessImg from "../assets/business.billede.png";
 import financeImg from "../assets/finance.billede.png";
 import brandImg from "../assets/brand.billede.png";
 
-// ✅ din pil fra assets
-import arrowAsset from "../assets/button.arrow.svg";
+import arrowBlue from "../assets/arrow.blå.svg";
+import arrowGreen from "../assets/arrow.grøn.svg";
+import arrowOrange from "../assets/arrow.orange.svg";
+import arrowPurple from "../assets/arrow.lilla.svg";
+
+// helper: HEX -> "r,g,b"
+function hexToRgbString(hex) {
+  const clean = hex.replace("#", "").trim();
+  const full = clean.length === 3 ? clean.split("").map((c) => c + c).join("") : clean;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  return `${r}, ${g}, ${b}`;
+}
 
 const items = [
   {
@@ -18,7 +30,14 @@ const items = [
       "Vi hjælper jer med at skabe digitale løsninger, der hænger sammen og kan udvikle sig i takt med jeres forretning.",
     cta: "UDFORSK KOLLAB DIGITAL",
     bulletsLeft: ["Websites og e-commerce", "IT-rådgivning", "Cloud og drift"],
-    bulletsRight: ["Digitalisering og automatisering", "IT-arkitektur", "IoT og intelligente løsninger"],
+    bulletsRight: [
+      "Digitalisering og automatisering",
+      "IT-arkitektur",
+      "IoT og intelligente løsninger",
+    ],
+    arrow: arrowBlue,
+    color: "#19247D",
+    fade: "#C4F5FA",
   },
   {
     id: 2,
@@ -29,6 +48,9 @@ const items = [
     cta: "UDFORSK KOLLAB BUSINESS SYSTEMS",
     bulletsLeft: ["ERP og forretningssystemer", "Lager- og produktionsstyring", "ESG-data og compliance"],
     bulletsRight: ["HR og tidsregistrering", "Data, rapportering og AI", "Kunde- og leverandørportaler"],
+    arrow: arrowGreen,
+    color: "#053E2F",
+    fade: "#B7E8D1",
   },
   {
     id: 3,
@@ -39,6 +61,9 @@ const items = [
     cta: "UDFORSK KOLLAB FINANCE",
     bulletsLeft: ["Økonomisystemer", "Lønsystemer", "Forecasting"],
     bulletsRight: ["Gap assessment", "Disponering (MRP)", "Budgettering"],
+    arrow: arrowOrange,
+    color: "#FB823B",
+    fade: "#F8D4A2",
   },
   {
     id: 4,
@@ -49,6 +74,9 @@ const items = [
     cta: "UDFORSK KOLLAB BRAND & STRATEGY",
     bulletsLeft: ["Branding & positionering", "Digital transformation", "UI Design"],
     bulletsRight: ["Digitaliseringsrådgivning", "Brugeroplevelse (UX)", "Salg & marketing (strategi)"],
+    arrow: arrowPurple,
+    color: "#35296B",
+    fade: "#BCA4EA",
   },
 ];
 
@@ -66,7 +94,6 @@ export default function Accordion() {
   };
 
   return (
-    // ✅ wrapper der gør hele sektionen lavere på siden (styres i CSS)
     <section className="services-accordion k-container">
       <div className="accordion">
         <div className="accordion-header-title">Services</div>
@@ -78,7 +105,14 @@ export default function Accordion() {
             const height = contentEl ? contentEl.scrollHeight : 0;
 
             return (
-              <div key={item.id} className={"accordion-item " + (isOpen ? "open" : "")}>
+              <div
+                key={item.id}
+                className={"accordion-item " + (isOpen ? "open" : "")}
+                style={{
+                  "--accent-color": item.color,
+                  "--fade-rgb": hexToRgbString(item.fade),
+                }}
+              >
                 {/* Header row */}
                 <div
                   className="accordion-btn"
@@ -92,7 +126,6 @@ export default function Accordion() {
                   <span className="label-row">
                     <span className="item-label">{item.title}</span>
 
-                    {/* ✅ pil fra assets */}
                     <button
                       type="button"
                       className="arrow-svg"
@@ -103,7 +136,7 @@ export default function Accordion() {
                       aria-label={isOpen ? "Collapse" : "Expand"}
                     >
                       <img
-                        src={arrowAsset}
+                        src={item.arrow}
                         alt=""
                         className={"arrow-icon " + (isOpen ? "is-open" : "")}
                       />
@@ -128,14 +161,10 @@ export default function Accordion() {
                         {item.intro ? <p className="panel-intro">{item.intro}</p> : null}
 
                         {item.cta ? (
-                          <a
-                            className="panel-cta"
-                            href="/"
-                            onClick={(e) => e.preventDefault()}
-                          >
+                          <a className="panel-cta" href="/" onClick={(e) => e.preventDefault()}>
                             <span className="panel-cta-text">{item.cta}</span>
                             <span className="cta-arrow" aria-hidden="true">
-                              <img src={arrowAsset} alt="" className="cta-arrow-icon" />
+                              <img src={item.arrow} alt="" className="cta-arrow-icon" />
                             </span>
                           </a>
                         ) : null}
@@ -158,6 +187,7 @@ export default function Accordion() {
                     </div>
                   </div>
                 </div>
+
               </div>
             );
           })}

@@ -1,41 +1,46 @@
+// Values.jsx
 import React, { useState } from "react";
 import "./values.css";
+import arrowFigur from "../assets/arrow-figur.svg";
 
 const cards = [
   {
     id: 1,
     number: "01.",
-    title: "Vi starter med mennesker",
-    short: "Livet er for kort til kedelige arbejdspladser",
-    long: "Vi sætter mennesker først og designer løsninger, som virker i hverdagen. Vi tester med rigtige brugere, itererer og leverer værdiskabende oplevelser.",
+    shortBold: "Livet er for kort til",
+    shortItalic: "kedelige arbejdspladser",
+    long:
+      "Det skal være sjovt og udviklende at gå på arbejde — både i vores samarbejde og i vores opgaveløsning.",
   },
   {
     id: 2,
     number: "02.",
-    title: "Brugbarhed først",
-    short: "Livet er for kort til halvtomme glas",
-    long: "Vores tilgang sikrer at løsninger ikke blot ser pæne ud, men også er brugbare og effektive i praksis over tid.",
+    shortBold: "Livet er for kort til",
+    shortItalic: "halvtomme glas",
+    long:
+      "Vi vil gerne have de positive briller på og se muligheder i stedet for begrænsninger.",
   },
   {
     id: 3,
     number: "03.",
-    title: "Holder relationer",
-    short: "Livet er for kort til korte relationer",
-    long: "Vi bygger langvarige samarbejder med kunder og partnere — fordi de bedste resultater kommer af kontinuerlig tillid.",
+    shortBold: "Livet er for kort til",
+    shortItalic: "korte relationer",
+    long:
+      "Vi vil gerne have langvarige relationer til hinanden og vores kunder.",
   },
   {
     id: 4,
     number: "04.",
-    title: "Resultater",
-    short: "Livet er for kort til korte resultater",
-    long: "Vi fokuserer på klare mål, målinger og resultater, så vores løsninger reelt skaber værdi for din forretning.",
+    shortBold: "Livet er for kort til",
+    shortItalic: "ligegyldighed",
+    long:
+      "Vi tager ansvar for mennesker, opgaver og resultater – og for det samfund, vi er en del af.",
   },
 ];
 
 export default function Values() {
   const [open, setOpen] = useState(null);
-
-  const toggle = (id) => setOpen(open === id ? null : id);
+  const toggle = (id) => setOpen((prev) => (prev === id ? null : id));
 
   return (
     <section className="values">
@@ -43,33 +48,62 @@ export default function Values() {
         <div className="values-header">
           <div className="values-eyebrow">Vores værdier</div>
           <h2 className="values-title">VI STARTER MED MENNESKER</h2>
-          <a className="values-link">LÆS MERE OM OS ›</a>
+
+          <a className="values-link" href="/" onClick={(e) => e.preventDefault()}>
+            <span className="values-link-text">LÆS MERE OM OS</span>
+            <img className="values-link-arrow" src={arrowFigur} alt="" />
+          </a>
         </div>
 
         <div className="values-grid">
-          {cards.map((c) => (
-            <div key={c.id} className={"values-card " + (open === c.id ? "open" : "")}> 
-              <div className="card-top">
-                <div className="card-number">{c.number}</div>
-                <button
-                  className="card-toggle"
-                  onClick={() => toggle(c.id)}
-                  aria-expanded={open === c.id}
-                >
-                  {open === c.id ? "–" : "+"}
-                </button>
-              </div>
+          {cards.map((c, idx) => {
+            const isOpen = open === c.id;
 
-              <div className="card-content">
-                <h3 className="card-heading">{c.title}</h3>
-                <p className="card-short">{c.short}</p>
-                <div className="card-divider" />
-                <div className="card-long" aria-hidden={open !== c.id}>
-                  {c.long}
+            return (
+              <article
+                key={c.id}
+                className={[
+                  "values-card",
+                  isOpen ? "open" : "",
+                  idx === 1 ? "value-card-2" : "",
+                  idx === 3 ? "value-card-4" : "",
+                ].join(" ")}
+              >
+                {/* Toggle ligger uafhængigt i top-right */}
+                <button
+                  className={"card-toggle " + (isOpen ? "is-open" : "")}
+                  onClick={() => toggle(c.id)}
+                  aria-expanded={isOpen}
+                  type="button"
+                >
+                  {isOpen ? "–" : "+"}
+                </button>
+
+                {/* Alt andet er centreret lodret */}
+                <div className="card-content">
+                  <div className={"card-number " + (isOpen ? "is-open" : "")}>
+                    {c.number}
+                  </div>
+
+                  {!isOpen ? (
+                    <p className="card-short">
+                      <span className="short-bold">{c.shortBold}</span>
+                      {c.shortItalic ? (
+                        <>
+                          <br />
+                          <span className="short-italic">{c.shortItalic}</span>
+                        </>
+                      ) : null}
+                    </p>
+                  ) : (
+                    <p className="card-long">{c.long}</p>
+                  )}
+
+                  <div className="card-divider" />
                 </div>
-              </div>
-            </div>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

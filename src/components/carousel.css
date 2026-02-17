@@ -1,9 +1,11 @@
+/* carousel.css */
+
 .carousel{
-  margin-top: 120px;
+  margin-top: 75px;
 }
 
 /* -------------------------
-   Header
+   Header (grid)
    ------------------------- */
 
 .carousel-header{
@@ -26,6 +28,14 @@
   align-self: center;
   display: flex;
   gap: 12px;
+}
+
+/* 0px marker */
+.carousel-align-marker{
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 /* -------------------------
@@ -55,11 +65,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
   text-decoration: none;
   color: #000;
+
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   letter-spacing: 0.02em;
 }
 
@@ -87,8 +99,8 @@
 }
 
 .cases-link-arrow{
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
@@ -97,19 +109,23 @@
    ------------------------- */
 
 .circle-btn{
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+
   background: rgba(245,239,225,0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+
   border: 1px solid rgba(255,255,255,0.40);
   box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
-  transition: transform 180ms ease, background 180ms ease;
+  transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
 }
 
 .circle-btn:hover{
@@ -117,9 +133,15 @@
   background: rgba(245,239,225,0.90);
 }
 
+.circle-btn:disabled{
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .circle-arrow{
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   display: block;
   transform: translateX(1px);
 }
@@ -129,17 +151,42 @@
 }
 
 /* -------------------------
-   ✅ Full width bleed area (så højre side kan gå HELT ud)
+   Full-width bleed area + edge fade
    ------------------------- */
 
 .carousel-bleed-area{
-  --gutter-left: 0px;
+  --align-left: 0px;
+  --carousel-bg: #ffffff; /* skift hvis din sidebg ikke er hvid */
+
   width: 100%;
   margin-top: 26px;
+  position: relative;
+}
+
+/* Edge fade overlays (ser mega moderne ud) */
+.carousel-bleed-area::before,
+.carousel-bleed-area::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width: 56px;
+  pointer-events:none;
+  z-index: 5;
+}
+
+.carousel-bleed-area::before{
+  left:0;
+  background: linear-gradient(to right, var(--carousel-bg), rgba(255,255,255,0));
+}
+
+.carousel-bleed-area::after{
+  right:0;
+  background: linear-gradient(to left, var(--carousel-bg), rgba(255,255,255,0));
 }
 
 /* -------------------------
-   Track
+   Track (modern feel)
    ------------------------- */
 
 .carousel-track{
@@ -150,53 +197,84 @@
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
   scroll-behavior: smooth;
+
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 
   scrollbar-width: none;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   box-sizing: border-box;
+
+  /* “grab to drag” feel */
+  cursor: grab;
+  outline: none;
+}
+
+.carousel-track:active{
+  cursor: grabbing;
+}
+
+.carousel-track:focus-visible{
+  outline: 2px solid rgba(0,0,0,0.18);
+  outline-offset: 6px;
 }
 
 .carousel-track::-webkit-scrollbar{
   display: none;
 }
 
-/* ✅ START: venstre = header-start, højre = helt til viewport */
+/* START: flugt venstre til header-start, bleed helt til højre */
 .carousel-track.is-bleed-right{
-  padding-left: var(--gutter-left);
+  padding-left: var(--align-left);
   padding-right: 24px;
+  scroll-padding-left: var(--align-left);
+  scroll-padding-right: 24px;
 }
 
-/* ✅ EFTER KLIK: venstre = helt til viewport, højre = helt til viewport */
+/* EFTER KLIK: må gerne gå helt ud til venstre */
 .carousel-track.is-bleed-both{
   padding-left: 0px;
   padding-right: 24px;
+  scroll-padding-left: 0px;
+  scroll-padding-right: 24px;
   transition: padding-left 250ms ease;
 }
 
 /* -------------------------
-   Cards
+   Cards (no border, no rounding, premium motion)
    ------------------------- */
 
 .carousel-card{
   flex: 0 0 420px;
   scroll-snap-align: start;
 
-  transform: scale(0.985);
-  opacity: 0.94;
+  /* base state */
+  transform: translateY(0) scale(0.985);
+  opacity: 0.78;
+  filter: saturate(0.98) contrast(0.98);
 
-  transition: transform 280ms ease, opacity 280ms ease;
+  transition: transform 320ms ease, opacity 320ms ease, filter 320ms ease;
   will-change: transform;
 }
 
+/* Active = “hero” card */
+.carousel-card.is-active{
+  transform: translateY(-2px) scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+/* Hover = subtle premium lift */
 .carousel-card:hover{
-  transform: scale(0.995);
+  transform: translateY(-3px) scale(0.995);
   opacity: 1;
 }
 
+/* Media: no rounding, no border */
 .card-media{
-  overflow: hidden;
+  overflow: hidden; /* keep image crop */
 }
 
 .card-image{
@@ -204,10 +282,12 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  transition: transform 600ms ease;
+  transition: transform 700ms ease;
 }
 
-.carousel-card:hover .card-image{
+/* image “slow zoom” on hover/active */
+.carousel-card:hover .card-image,
+.carousel-card.is-active .card-image{
   transform: scale(1.03);
 }
 
@@ -229,19 +309,31 @@
   margin: 0;
 }
 
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .carousel-track{ scroll-behavior: auto; }
+  .carousel-card, .card-image, .circle-btn{ transition: none !important; }
+}
+
 /* -------------------------
    Responsive
    ------------------------- */
 
 @media (max-width: 1024px){
   .carousel-card{ flex-basis: 360px; }
-  .carousel-track.is-bleed-right{ padding-right: 16px; }
-  .carousel-track.is-bleed-both{ padding-right: 16px; }
+  .carousel-bleed-area::before,
+  .carousel-bleed-area::after{
+    width: 44px;
+  }
 }
 
 @media (max-width: 720px){
   .carousel{ margin-top: 80px; }
   .carousel-card{ flex-basis: 80%; }
-  .carousel-track.is-bleed-right{ padding-right: 16px; }
-  .carousel-track.is-bleed-both{ padding-right: 16px; }
+
+  .carousel-track.is-bleed-right,
+  .carousel-track.is-bleed-both{
+    padding-right: 16px;
+    scroll-padding-right: 16px;
+  }
 }

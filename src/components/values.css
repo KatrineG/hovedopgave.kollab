@@ -1,55 +1,277 @@
-.values {
-  padding: 48px 12px;
-  /* background removed for global bg */
+/* values.css */
+
+/* =========================
+   TUNING (match Figma)
+   ========================= */
+:root{
+  --card-w: 360px;
+  --card-h: 145px;
+  --stagger: 78px;
+
+  --divider-h: 1.5px;
+  --divider-color: rgba(0,0,0,0.72);
 }
 
-.values-inner {
-  max-width: 1100px;
+/* =========================
+   SECTION
+   ========================= */
+.values{
+  background: #FB823B;
+  padding: 70px 0 90px;
+}
+
+.values-inner{
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 12px;
 }
 
-.values-header {
+/* =========================
+   HEADER
+   ========================= */
+.values-header{
   text-align: right;
-  margin-bottom: 28px;
+  margin-bottom: 34px;
 }
 
-.values-eyebrow { font-size: 12px; color: #333; }
-.values-title { font-size: 32px; margin: 6px 0; }
-.values-link { font-size: 12px; color: #333; text-decoration: none; }
-
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px 36px;
+.values-eyebrow{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 6px;
 }
 
-.values-card {
-  /* background removed for global bg */
-  padding: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  border-radius: 6px;
-  transition: transform 220ms ease, background 220ms ease;
+.values-title{
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #111;
+}
+
+/* CTA link */
+.values-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.values-link-text{
   position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.values-link-text::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:100%;
+  height:1.5px;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 200ms ease;
+}
+
+.values-link:hover .values-link-text::after{
+  transform:scaleX(1);
+}
+
+.values-link-arrow{
+  width: 14px;
+  height: 14px;
+  display: block;
+  transform: translateY(1px);
+}
+
+/* =========================
+   GRID
+   ========================= */
+.values-grid{
+  display: grid;
+  grid-template-columns: repeat(2, var(--card-w));
+  column-gap: 100px;
+  row-gap: 25px;
+  justify-content: center;
+  align-items: start;
+}
+
+/* 02 og 04 ned */
+.value-card-2{ margin-top: var(--stagger); }
+.value-card-4{ margin-top: var(--stagger); }
+
+/* =========================
+   CARD
+   ========================= */
+.values-card{
+  position: relative;           /* ✅ så toggle kan ligge top-right */
+  height: var(--card-h);
+  padding: 18px 18px 16px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.70) 0%,
+    rgba(255,255,255,0.30) 50%,
+    rgba(255,255,255,0.10) 100%
+  );
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: none;
+  border-radius: 0;
+
+  /* ✅ ingen skygge */
+  box-shadow: none;
+}
+
+/* Indhold (alt undtagen toggle) centreret lodret */
+.card-content{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* ✅ lodret centreret */
+  gap: 10px;
+
+  /* ✅ så tekst aldrig kan gå ind under togglen */
+  padding-right: 44px;
+}
+
+/* =========================
+   NUMBER
+   ========================= */
+.card-number{
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  transition: color 180ms ease;
+}
+
+.card-number.is-open{
+  color: #FB823B;
+}
+
+/* =========================
+   TOGGLE (top-right)
+   ========================= */
+.card-toggle{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: none;
+
+  background: rgba(255,255,255,0.70);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  /* ✅ ingen skygge */
+  box-shadow: none;
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: #111;
+
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.card-toggle:hover{
+  transform: translateY(-1px) scale(1.05);
+  background: rgba(255,255,255,0.85);
+}
+
+.card-toggle.is-open{
+  color: #FB823B;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+.card-short{
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 1.25;
+  margin: 0;
+  color: #111;
+  min-height: 44px;
+}
+
+.short-bold{ font-weight: 700; }
+.short-italic{ font-style: italic; font-weight: 400; }
+
+.card-long{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(0,0,0,0.78);
+
+  min-height: 44px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.values-card.open { transform: translateY(-6px); /* background removed for global bg */ }
-
-.card-top { display:flex; justify-content: space-between; align-items: center; }
-.card-number { font-weight: 700; font-size: 20px; }
-.card-toggle {
-  width: 34px; height:34px; border-radius:50%; border:none; /* background removed for global bg */ cursor:pointer; font-size:20px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+/* =========================
+   DIVIDER (ALTID 1.5px)
+   ========================= */
+.card-divider{
+  position: relative;
+  width: 100%;
+  height: var(--divider-h);
 }
 
-.card-content { padding-top: 12px; }
-.card-heading { margin: 0 0 8px 0; font-size: 18px; }
-.card-short { margin: 0 0 10px 0; color:#333; }
-.card-divider { height:1px; background: rgba(0,0,0,0.08); margin: 10px 0; }
-.card-long { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
-.values-card.open .card-long { max-height: 180px; }
+.card-divider::before{
+  content:"";
+  position: absolute;
+  inset: 0;
+  height: var(--divider-h);
+  background: var(--divider-color);
+  box-shadow: 0 0 0.01px rgba(0,0,0,0.35);
+}
 
-@media (max-width: 720px) {
-  .values-grid { grid-template-columns: 1fr; }
-  .values-header { text-align: left; }
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width:1100px){
+  :root{
+    --card-w: 100%;
+    --stagger: 0px;
+  }
+
+  .values-grid{
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 22px;
+  }
+
+  .values-header{
+    text-align: left;
+  }
 }

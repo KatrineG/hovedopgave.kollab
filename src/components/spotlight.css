@@ -1,38 +1,207 @@
-.spotlight {
-  padding: 56px 12px;
-  /* background removed for global bg */
-}
-.spotlight-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 36px;
-  align-items: center;
-  position: relative;
-}
-.spotlight-media { display: block; }
-.spotlight-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-}
-.spotlight-body { padding: 8px 6px; }
-.spotlight-eyebrow { color: #8b6b4b; font-size: 12px; margin-bottom: 6px; }
-.spotlight-title { font-size: 26px; margin: 0 0 10px 0; }
-.spotlight-text { color: #333; line-height: 1.5; margin-bottom: 16px; }
-.spotlight-cta { color: #8b6b4b; font-weight: 600; text-decoration: none; }
-.spotlight-figure {
-  position: absolute;
-  right: 18px;
-  bottom: 12px;
-  width: 96px;
-  height: auto;
-  opacity: 0.9;
+/* spotlight.css */
+
+/* =========================
+   SECTION (centrer hele enheden)
+   ========================= */
+.spotlight{
+  padding: 120px 12px;
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 960px) {
-  .spotlight-inner { grid-template-columns: 1fr; }
-  .spotlight-figure { right: 12px; bottom: -8px; width: 80px; }
+/* =========================
+   INNER
+   ========================= */
+.spotlight-inner{
+  width: 100%;
+  max-width: 960px;
+
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 86px;
+  align-items: center;
+
+  position: relative;
+}
+
+/* =========================
+   MEDIA (fade slideshow)
+   ========================= */
+.spotlight-media{
+  position: relative;
+  width: 360px;
+  height: 520px;
+  display: block;
+}
+
+/* images ligger ovenpå hinanden */
+.spotlight-img{
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 1200ms ease-in-out;
+
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.spotlight-img.active{
+  opacity: 1;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+.spotlight-body{
+  max-width: 520px;
+  padding-top: 6px;
+}
+
+.spotlight-eyebrow{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(0,0,0,0.45);
+  margin-bottom: 10px;
+}
+
+.spotlight-title{
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.spotlight-text{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0,0,0,0.70);
+  margin: 0 0 18px 0;
+}
+
+/* =========================
+   CTA (underline hover 1.5px)
+   ========================= */
+.spotlight-cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #111;
+
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.spotlight-cta-text{
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.spotlight-cta-text::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:100%;
+  height:1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+.spotlight-cta:hover .spotlight-cta-text::after{
+  transform: scaleX(1);
+}
+
+.spotlight-cta-arrow{
+  width: 14px;
+  height: 14px;
+  display: block;
+  transform: translateY(0.5px);
+}
+
+/* =========================
+   DECOR FIGURE (scroll-linked)
+   ========================= */
+.spotlight-figure{
+  position: absolute;
+  right: 120px;
+  bottom: 6px;
+
+  width: 115px;
+  height: auto;
+
+  opacity: 0.22;
+  pointer-events: none;
+
+  will-change: transform;
+
+  /* ✅ helt lige (ingen rotate) */
+  transform: translate3d(240px, 14px, 0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .spotlight-img{
+    transition: none;
+  }
+  .spotlight-figure{
+    transform: none !important;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 960px){
+  .spotlight{
+    padding: 72px 12px;
+  }
+
+  .spotlight-inner{
+    max-width: 560px;
+    grid-template-columns: 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+
+  .spotlight-media{
+    width: 100%;
+    height: 460px;
+  }
+
+  .spotlight-body{
+    max-width: 560px;
+    padding-top: 0;
+  }
+
+  .spotlight-figure{
+    right: 12px;
+    bottom: -10px;
+    width: 72px;
+    transform: translate3d(240px, 14px, 0); /* fallback stadig uden rotate */
+  }
 }
